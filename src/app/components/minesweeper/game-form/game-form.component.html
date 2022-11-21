@@ -1,1 +1,25 @@
-<p>game-form works!</p>
+<form [formGroup]="gameForm" class="row">
+  <mat-radio-group (change)="setDifficulty($event.value)"  class="radio-buttons" formControlName="difficulty">
+    <mat-radio-button value="beginner">Beginner</mat-radio-button>
+    <mat-radio-button value="medium">Medium</mat-radio-button>
+    <mat-radio-button value="expert">Expert</mat-radio-button>
+    <mat-radio-button value="custom">Custom</mat-radio-button>
+  </mat-radio-group>
+  <ng-container *ngIf="gameForm.controls['difficulty'].value == 'custom'" >
+    <div class="fields">
+      <mat-form-field appearance="fill" class="col-xs-11">
+        <mat-label>Height</mat-label>
+        <input type="number" formControlName="height" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="col-xs-11">
+        <mat-label>Width</mat-label>
+        <input type="number" formControlName="width" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="col-xs-11">
+        <mat-label>Number of bombs</mat-label>
+        <input type="number" formControlName="bombs" matInput>
+      </mat-form-field>
+    </div>
+  </ng-container>
+  <button mat-button (click)="play()" [disabled]="gameForm.invalid">Play</button>
+</form>

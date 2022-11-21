@@ -1,0 +1,24 @@
+.radio-buttons{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.fields{
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+}
+.mat-radio-label{
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .radio-buttons{
+    justify-content: center;
+    flex-direction: column;
+  }
+  .radio-buttons .mat-radio-button{
+    display: inline-block;
+    margin: 10px auto
+  }
+}
