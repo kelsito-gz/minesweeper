@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { GameFormComponent } from './game-form/game-form.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GameComponent } from './game/game.component';
 
 
 
 @NgModule({
   declarations: [
-    GameFormComponent
+    GameFormComponent,
+    GameComponent
   ],
   imports: [
     CommonModule,
@@ -16,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
   ], exports: [
     GameFormComponent,
+    GameComponent,
   ]
 })
 export class MinesweeperModule { }

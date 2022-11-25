@@ -1,0 +1,6 @@
+<div class="game">
+  <div *ngFor="let row of game.boxs" class="row-game">
+    <div *ngFor="let cell of row" [class]="cell.getStyle()">
+    </div>
+  </div>
+</div>
