@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Game } from './models/game.model';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'minesweeper';
+  game: Game;
+
+  loadGame(game: Game){
+    this.game = game;
+  }
 }

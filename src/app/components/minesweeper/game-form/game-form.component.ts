@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Game } from 'src/app/models/game.model';
 
 @Component({
   selector: 'app-game-form',
@@ -9,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class GameFormComponent implements OnInit {
 
   gameForm: FormGroup;
+  @Output() game: EventEmitter<Game> = new EventEmitter<Game>();
   constructor(private formBuilder: FormBuilder) {
     this.initForm();
   }
@@ -38,8 +40,29 @@ export class GameFormComponent implements OnInit {
   }
 
   play(){
-
-
+    let width  = this.gameForm.controls['width'].value;
+    let height  = this.gameForm.controls['height'].value;
+    let bombs  = this.gameForm.controls['bombs'].value;
+    switch (this.gameForm.controls['difficulty'].value) {
+      case 'beginner':
+        width = 9;
+        height = 9;
+        bombs = 10;
+        break;
+      case 'medium':
+        width = 16;
+        height = 16;
+        bombs = 40;
+        break;
+      case 'expert':
+        width = 30;
+        height = 16;
+        bombs = 99;
+        break;
+      default:
+        break;
+    }
+    this.game.emit(new Game(width, height, bombs));
   }
 
 }

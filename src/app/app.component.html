@@ -1,7 +1,10 @@
 <main>
   <section class="container">
     <h1 class="tittle">MineSweeper</h1>
-    <app-game-form></app-game-form>
+    <app-game-form (game)="loadGame($event)"></app-game-form>
+    <ng-container *ngIf="game">
+      <app-game [game]="game"></app-game>
+    </ng-container>
   </section>
   <app-footer></app-footer>
 </main>
