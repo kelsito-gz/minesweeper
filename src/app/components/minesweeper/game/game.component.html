@@ -10,7 +10,19 @@
   </div>
   <div *ngFor="let row of game.boxs" class="row-game">
     <div class="frame frame-left"></div>
-    <div *ngFor="let cell of row" [class]="cell.getStyle()">
+    <div *ngFor="let cell of row" [class]="cell.getStyle()"
+    (click)="click(cell)" (contextmenu)="rightClick(cell)">
+      <div *ngIf="cell.hasFlag()" class="flag">
+        <div style="border-right: 2px solid black;"></div>
+        <div style="background-color: red;"></div>
+        <div></div>
+        <div style="border-right: 2px solid black;"></div>
+        <div style="background-color: red;"></div>
+        <div></div>
+        <div style="border-right: 2px solid black;"></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
     <div class="frame frame-right"></div>
   </div>

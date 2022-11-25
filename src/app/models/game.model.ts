@@ -36,12 +36,14 @@ export class Box{
     this.stateBox = new StateBoxWithoutTouching();
   }
 
+  touch() { this.stateBox.touch(this) }
   getBomb() { return this.hasBomb }
   setBomb(hasBomb: boolean) { this.hasBomb = hasBomb }
   setState(stateBox: StateBox) { this.stateBox = stateBox }
 
   setFlag(){ this.stateBox.flag(this) }
-  getStyle(): string{ return this.stateBox.getStyle()  }
+  getStyle(): string{ return this.stateBox.getStyle() }
+  hasFlag() { return this.stateBox.hasFlag() }
 
 }
 
@@ -52,6 +54,13 @@ export abstract class StateBox{
 
   getStyle(){
     return "box";
+  }
+
+  touch(box: Box){
+  }
+
+  hasFlag(){
+    return false;
   }
 
 }
@@ -73,6 +82,10 @@ export class StateBoxWithoutTouching extends StateBox{
     return "box not-touched";
   }
 
+  override touch(box: Box): void {
+    box.setState(new StateBoxTouched());
+  }
+
 }
 
 export class StateBoxWithFlag extends StateBox{
@@ -83,6 +96,14 @@ export class StateBoxWithFlag extends StateBox{
 
   override getStyle(){
     return "box not-touched";
+  }
+
+  override touch(box: Box): void {
+
+  }
+
+  override hasFlag(){
+    return true;
   }
 
 }

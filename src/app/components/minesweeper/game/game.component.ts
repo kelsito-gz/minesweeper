@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Game } from 'src/app/models/game.model';
+import { Box, Game } from 'src/app/models/game.model';
 
 @Component({
   selector: 'app-game',
@@ -12,6 +12,15 @@ export class GameComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  click(box: Box){
+    box.touch();
+  }
+
+  rightClick(box: Box){
+    box.setFlag();
+    return false;
   }
 
 }
