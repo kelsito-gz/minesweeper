@@ -14,9 +14,9 @@ export class Game {
 
   private initBoxs(){
     this.boxs = [];
-    for (let i = 0; i < this.width; i++) {
+    for (let i = 0; i < this.height; i++) {
       this.boxs[i] = [];
-      for (let j = 0; j < this.height; j++) {
+      for (let j = 0; j < this.width; j++) {
         this.boxs[i][j] = new Box();
       }
     }

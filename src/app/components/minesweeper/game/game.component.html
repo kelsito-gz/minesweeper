@@ -1,6 +1,26 @@
 <div class="game">
+  <div class="top">
+    <div class="frame frame-upper-left-corner">
+      <div class="border-frame"></div>
+    </div>
+    <div *ngFor="let row of game.boxs[0]" class="frame frame-top"></div>
+    <div class="frame frame-upper-right-corner">
+      <div class="border-frame"></div>
+    </div>
+  </div>
   <div *ngFor="let row of game.boxs" class="row-game">
+    <div class="frame frame-left"></div>
     <div *ngFor="let cell of row" [class]="cell.getStyle()">
+    </div>
+    <div class="frame frame-right"></div>
+  </div>
+  <div class="bottom">
+    <div class="frame frame-lower-left-corner">
+      <div class="border-frame"></div>
+    </div>
+    <div *ngFor="let row of game.boxs[0]" class="frame frame-bottom"></div>
+    <div class="frame frame-right-left-corner">
+      <div class="border-frame"></div>
     </div>
   </div>
 </div>
