@@ -20,11 +20,30 @@ export class Game {
         this.boxs[i][j] = new Box();
       }
     }
+    this.setBombs(this.boxs, this.bombs);
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
-        this.boxs[i][j].setCloseAmount(i, j, this.boxs);
+        if(!this.boxs[i][j].getBomb()){
+          this.boxs[i][j].setCloseAmount(i, j, this.boxs);
+        }
       }
     }
+  }
+
+  private setBombs(boxs: Box[][], bombs: number){
+    let plantedBombs = 0;
+    while (bombs != plantedBombs) {
+      let x = this.getRandomInt(0, boxs[0].length);
+      let y = this.getRandomInt(0, boxs[0].length);
+      if(!boxs[x][y].getBomb()){
+        boxs[x][y].setBomb();
+        plantedBombs += 1;
+      }
+    }
+  }
+
+  private getRandomInt(min: number, max: number){
+    return Math.floor((Math.random() * (max-min))+min)
   }
 
   lose(){
@@ -44,7 +63,7 @@ export class Box{
 
   touch() { this.stateBox.touch(this) }
   getBomb() { return this.hasBomb }
-  setBomb(hasBomb: boolean) { this.hasBomb = hasBomb }
+  setBomb() { this.hasBomb = true }
   setState(stateBox: StateBox) { this.stateBox = stateBox }
 
   setFlag(){ this.stateBox.flag(this) }
