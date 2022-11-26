@@ -15,11 +15,13 @@ export class GameComponent implements OnInit {
   }
 
   click(box: Box){
-    box.touch();
+    if(!this.game.lost)
+      box.touch(this.game);
   }
 
   rightClick(box: Box){
-    box.setFlag();
+    if(!this.game.lost)
+      box.setFlag();
     return false;
   }
 

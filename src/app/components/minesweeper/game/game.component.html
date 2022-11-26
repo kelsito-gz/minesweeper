@@ -12,7 +12,7 @@
     <div class="frame frame-left"></div>
     <div *ngFor="let cell of row; let j = index" [class]="cell.getStyle(cell)"
     (click)="click(cell)" (contextmenu)="rightClick(cell)">
-      <div *ngIf="cell.hasFlag()" class="flag">
+      <div *ngIf="cell.hasFlag() && !game.lost" class="flag">
         <div style="border-right: 2px solid black;"></div>
         <div style="background-color: red;"></div>
         <div></div>
@@ -25,6 +25,8 @@
       </div>
       <div *ngIf="cell.isTouched()">
         {{cell.getCloseAmount()}}
+      </div>
+      <div *ngIf="game.lost && cell.getBomb()" class="bomb">
       </div>
     </div>
     <div class="frame frame-right"></div>

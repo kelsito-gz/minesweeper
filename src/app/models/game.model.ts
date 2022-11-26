@@ -3,6 +3,7 @@ export class Game {
   height: number;
   width: number;
   boxs: Box[][];
+  lost: boolean = false;
 
 
   constructor(width: number, height: number, bombs: number){
@@ -47,7 +48,7 @@ export class Game {
   }
 
   lose(){
-
+    this.lost = true;
   }
 
 }
@@ -61,7 +62,7 @@ export class Box{
     this.stateBox = new StateBoxWithoutTouching();
   }
 
-  touch() { this.stateBox.touch(this) }
+  touch(game: Game) { this.stateBox.touch(this, game) }
   getBomb() { return this.hasBomb }
   setBomb() { this.hasBomb = true }
   setState(stateBox: StateBox) { this.stateBox = stateBox }
@@ -114,7 +115,7 @@ export abstract class StateBox{
     return "box";
   }
 
-  touch(box: Box){
+  touch(box: Box, game: Game){
   }
 
   hasFlag(){
@@ -152,8 +153,10 @@ export class StateBoxWithoutTouching extends StateBox{
     return "box not-touched";
   }
 
-  override touch(box: Box): void {
+  override touch(box: Box, game: Game): void {
     box.setState(new StateBoxTouched());
+    if(box.getBomb())
+      game.lose();
   }
 
 }
@@ -166,10 +169,6 @@ export class StateBoxWithFlag extends StateBox{
 
   override getStyle(box: Box){
     return "box not-touched";
-  }
-
-  override touch(box: Box): void {
-
   }
 
   override hasFlag(){

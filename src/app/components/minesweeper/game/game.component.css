@@ -7,6 +7,9 @@
   text-align: center;
   justify-content: center;
   cursor:pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .clean{
@@ -24,6 +27,13 @@
   font-size: 1.2vw;
   font-weight: bold;
   padding-top: 0.2vw;
+}
+
+.bomb{
+  width: .5vw;
+  height: .5vw;
+  background-color: black;
+  border-radius: 50%;
 }
 
 .flag{
