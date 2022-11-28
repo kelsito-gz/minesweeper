@@ -157,6 +157,31 @@ export class StateBoxWithoutTouching extends StateBox{
     box.setState(new StateBoxTouched());
     if(box.getBomb())
       game.lose();
+    else if (box.getCloseAmount() == null) {
+      let x = 0;
+      let y = 0;
+      for (let i = 0; i < game.height; i++) {
+        for (let j = 0; j < game.width; j++) {
+          if(game.boxs[i][j] == box){
+            x = i;
+            y = j;
+            break;
+          }
+        }
+      }
+      if(x != 0){
+        game.boxs[x-1][y].touch(game);
+      }
+      if(x != game.width-1){
+        game.boxs[x+1][y].touch(game);
+      }
+      if(y != 0){
+        game.boxs[x][y-1].touch(game);
+      }
+      if(y != game.height-1){
+        game.boxs[x][y+1].touch(game);
+      }
+    }
   }
 
 }
