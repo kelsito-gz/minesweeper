@@ -9,9 +9,23 @@ import { Box, Game } from 'src/app/models/game.model';
 export class GameComponent implements OnInit {
 
   @Input() game: Game;
+  missingBombs: number = 0;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(){
+    this.missingBombs = this.game.bombs;
+    this.setDataWidth();
+  }
+
+  private setDataWidth(){
+    var style: any = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML  = `.data-width { width: ${this.game.boxs.length * 1.5}vw}`;
+    document.getElementsByTagName('head')[0].appendChild(style);
+    document.getElementsByClassName('data-width')[0].className = 'data data-width';
   }
 
   click(box: Box){
@@ -20,8 +34,10 @@ export class GameComponent implements OnInit {
   }
 
   rightClick(box: Box){
-    if(!this.game.lost)
+    if(!this.game.lost){
+      box.hasFlag() ? this.missingBombs += 1 : this.missingBombs -= 1;
       box.setFlag();
+    }
     return false;
   }
 

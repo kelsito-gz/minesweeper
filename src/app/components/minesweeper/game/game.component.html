@@ -1,4 +1,32 @@
 <div class="game">
+  <header>
+    <div class="top">
+      <div class="frame frame-upper-left-corner">
+        <div class="border-frame"></div>
+      </div>
+      <div *ngFor="let row of game.boxs[0]" class="frame frame-top"></div>
+      <div class="frame frame-upper-right-corner">
+        <div class="border-frame"></div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="frame frame-left"></div>
+      <div class="data data-width">
+        <mat-label class="number">{{missingBombs}}</mat-label>
+        <mat-label class="number">{{game.lost ? ':(' : ':)'}}</mat-label>
+      </div>
+      <div class="frame frame-right"></div>
+    </div>
+    <div class="bottom">
+      <div class="frame frame-lower-left-corner">
+        <div class="border-frame"></div>
+      </div>
+      <div *ngFor="let row of game.boxs" class="frame frame-bottom"></div>
+      <div class="frame frame-right-left-corner">
+        <div class="border-frame-white"></div>
+      </div>
+    </div>
+  </header>
   <div class="top">
     <div class="frame frame-upper-left-corner">
       <div class="border-frame"></div>
@@ -37,7 +65,7 @@
     </div>
     <div *ngFor="let row of game.boxs[0]" class="frame frame-bottom"></div>
     <div class="frame frame-right-left-corner">
-      <div class="border-frame"></div>
+      <div class="border-frame-white"></div>
     </div>
   </div>
 </div>
